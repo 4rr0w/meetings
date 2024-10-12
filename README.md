@@ -107,6 +107,8 @@ The project is built with Django and Django Rest Framework (DRF) and includes th
 
 ## API Usage
 
+You can also use `/swagger` endpoint that will show you existing api's request-response example.
+
 ### 1. **Create Availability** (POST `/api/availability/setup`)
 
 This endpoint allows the calendar owner to set their availability for specific days and time slots.
