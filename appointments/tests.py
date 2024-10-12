@@ -245,8 +245,8 @@ class CalendarAPIUnitTests(TestCase):
     def test_list_appointments(self):
         """Test if appointments are correctly listed for a calendar owner."""
         self.create_availability('Monday', '09:00:00', '12:00:00')
-        appointment_1 = self.book_appointment(datetime(2024, 10, 14, 9, 0))
-        appointment_2 = self.book_appointment(datetime(2024, 10, 14, 10, 0), invitee_name="Invitee 2")
+        appointment_1 = self.book_appointment(get_next_monday() + timedelta(hours=9))
+        appointment_2 = self.book_appointment(get_next_monday() + timedelta(hours=10), invitee_name="Invitee 2")
 
         url = reverse('list-appointments')
         response = self.client.get(url, {'owner_email': self.calendar_owner.email})
