@@ -98,10 +98,10 @@ The project is built with Django and Django Rest Framework (DRF) and includes th
 
 ### Views & APIs
 
-- **Availability API** (`/availability/setup`): Allows owners to set their availability for specific days and times.
-- **Search Available Slots API** (`/availability/search`): Allows users to search for available slots for a specific calendar owner on a given date.
-- **Book Appointment API** (`/appointment/book`): Allows clients to book an appointment with the calendar owner.
-- **Appointments API** (`/appointments`): Allows calendar owners to list their appointments.
+- **Availability API** (`/api/availability/setup`): Allows owners to set their availability for specific days and times.
+- **Search Available Slots API** (`/api/availability/search`): Allows users to search for available slots for a specific calendar owner on a given date.
+- **Book Appointment API** (`/api/appointment/book`): Allows clients to book an appointment with the calendar owner.
+- **Appointments API** (`/api/appointments`): Allows calendar owners to list their appointments.
 
 ---
 
