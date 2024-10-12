@@ -7,7 +7,7 @@ This project provides a calendar and appointment booking system using Django and
 ## Table of Contents
 
 1. [Project Setup](#project-setup)
-2. [Django Project Setup](#django-project-setup)
+2. [Project Components](#project-components)
 3. [API Usage](#api-usage)
 4. [Test Cases](#test-cases)
 
