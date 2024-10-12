@@ -120,6 +120,15 @@ class CalendarAPIUnitTests(TestCase):
         self.assertEqual(len(response.data), 2)
         Availability.objects.all().delete()
 
+    def test_search_past_date_availability(self):
+        """Test searching for available slots in the past should return no availability."""
+        past_date = (datetime.utcnow() - timedelta(days=1)).strftime('%Y-%m-%d')
+        url = reverse('search-available-slots')
+        response = self.client.get(url, {'owner_email': self.calendar_owner.email, 'date': past_date})
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertIn('error', response.data)
+        self.assertEqual(response.data['error'], 'Cannot search availability for past dates.')
+
     def test_search_available_slots_no_availability(self):
         """Test searching for available slots when no availability exists."""
         url = reverse('search-available-slots')
@@ -232,6 +241,31 @@ class CalendarAPIUnitTests(TestCase):
                 self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
         self.assertEqual(Appointment.objects.count(), 1)
+
+    def test_list_appointments(self):
+        """Test if appointments are correctly listed for a calendar owner."""
+        self.create_availability('Monday', '09:00:00', '12:00:00')
+        appointment_1 = self.book_appointment(datetime(2024, 10, 14, 9, 0))
+        appointment_2 = self.book_appointment(datetime(2024, 10, 14, 10, 0), invitee_name="Invitee 2")
+
+        url = reverse('list-appointments')
+        response = self.client.get(url, {'owner_email': self.calendar_owner.email})
+        
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data), 2) 
+        self.assertEqual(response.data[0]["invitee_name"], appointment_1.invitee_name)
+        self.assertEqual(response.data[1]["invitee_name"], appointment_2.invitee_name)
+
+        Appointment.objects.all().delete()
+
+    def test_list_appointments_no_appointments(self):
+        """Test if the system correctly handles listing when no appointments exist."""
+        url = reverse('list-appointments')
+        response = self.client.get(url, {'owner_email': self.calendar_owner.email})
+        
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data), 0) 
+
 
     def tearDown(self):
         """Clean up test data after tests run."""

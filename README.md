@@ -208,19 +208,22 @@ GET /api/appointments/?owner_email=himanshu.anuragi@mail.com
 
 ## Test Cases
 
-- Create Availability: Tests if availability is correctly created for multiple days and time slots.
-- Create Availability Invalid Data: Tests if the system returns a 400 Bad Request when required fields are missing.
-- Create Availability Invalid Email: Tests if the system returns a 400 Bad Request for an invalid email format.
-- Search Available Slots: Verifies that the correct available slots are returned based on the calendar owner's availability.
-- Search Partial Available Slots: Checks that partial time slots are correctly handled and only valid slots are returned.
-- Search Available Slots No Availability: Tests the scenario where no slots are available on a specific day.
-- Double Book Appointment Fail: Ensures that attempting to book an appointment that overlaps an existing one fails with a 400 Bad Request.
-- Unavailable Slot Appointment Fail: Tests that booking an appointment in a time slot without availability fails.
-- Invalid Slot Appointment Fail: Tests booking an appointment that overlaps partially with an existing appointment fails.
-- Valid Slot Appointment Success: Verifies successful appointment booking for an available slot.
-- Valid Slot Appointment Multiple Success: Tests successfully booking multiple appointments in valid slots.
-- List Appointments: Tests if appointments are correctly listed for a calendar owner.
-- List Appointments No Appointments: Verifies the response when no appointments exist for the owner.
+- **test_create_availability**: Tests creating availability for a calendar owner.
+- **test_create_availability_missing_data**: Tests creating availability with missing owner data.
+- **test_create_availability_invalid_mail**: Tests creating availability with an invalid email format.
+- **test_search_available_slots**: Tests searching for available time slots.
+- **test_search_partial_available_slots**: Tests searching for partially available slots.
+- **test_search_past_date_availability**: Tests searching for available slots on a past date, ensuring that the API returns a 400 Bad Request response with an appropriate error message.
+- **test_search_available_slots_no_availability**: Tests searching for available slots when no availability exists.
+- **test_doublebook_appointment_fail**: Tests booking an overlapping appointment.
+- **test_unavailable_slot_appointment_fail**: Tests booking an appointment in an unavailable time slot.
+- **test_book_exactly_at_availability_boundary_fail**: Tests booking an appointment at the exact end of an availability window.
+- **test_invalid_slot_at_availability_fail**: Tests booking an appointment that partially overlaps with availability.
+- **test_valid_slot_appointment_success**: Tests booking an appointment successfully in a valid available slot.
+- **test_double_appointment_fail**: Tests booking multiple appointments, only allowing the first to succeed.
+- **test_list_appointments**: Tests listing appointments for a calendar owner.
+- **test_list_appointments_no_appointments**: Tests listing when no appointments exist.
+
 
 ---
 

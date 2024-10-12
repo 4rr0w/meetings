@@ -113,6 +113,9 @@ class SearchAvailableSlotsAPI(APIView):
         calendar_owner_email = serializer.validated_data.get('owner_email')
         date = serializer.validated_data.get('date')
 
+        if date < datetime.utcnow().date():
+            return Response({"error": "Cannot search availability for past dates."}, status=status.HTTP_400_BAD_REQUEST)
+
         calendar_owner_email = calendar_owner_email.lower()
 
         calendar_owner = CalendarOwner.objects.filter(email=calendar_owner_email).first()
