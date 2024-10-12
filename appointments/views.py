@@ -86,8 +86,8 @@ class SearchAvailableSlotsAPI(APIView):
         """
         Search for available time slots for a calendar owner on a specific date. 
         It returns all available slots where no appointment exists.
-        Request Example:
         --------------------------------------------------------------------------------------------------
+        Request Example:
             GET /api/appointments/available-slots/?owner_email=himanshu.anuragi@mail.com&date=2024-10-15
         --------------------------------------------------------------------------------------------------
         --------------------------------------------------------------------------------------------------

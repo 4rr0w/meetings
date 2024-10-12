@@ -26,8 +26,8 @@ Before setting up the project, make sure you have the following installed:
 Clone this repository to your local machine.
 
 ```bash
-git clone https://github.com/4rr0w/meeting.git
-cd meeting
+git clone https://github.com/4rr0w/meetings.git
+cd meetings
 ```
 
 ### Step 2: Create and Activate Virtual Environment
@@ -107,7 +107,7 @@ The project is built with Django and Django Rest Framework (DRF) and includes th
 
 ## API Usage
 
-### 1. **Create Availability** (POST `/availability/setup`)
+### 1. **Create Availability** (POST `/api/availability/setup`)
 
 This endpoint allows the calendar owner to set their availability for specific days and time slots.
 
@@ -133,7 +133,6 @@ This endpoint allows the calendar owner to set their availability for specific d
 
 ```json
 {
-  "status": "success",
   "message": "Availability created successfully"
 }
 ```
@@ -158,7 +157,7 @@ GET /api/search-slots/?owner_email=himanshu.anuragi@mail.com&date=2024-10-14
 ]
 ```
 
-### 3. **Book Appointment** (POST `/appointment/book`)
+### 3. **Book Appointment** (POST `/api/appointment/book`)
 
 This endpoint allows you to book an appointment with the calendar owner.
 
@@ -182,7 +181,7 @@ This endpoint allows you to book an appointment with the calendar owner.
 }
 ```
 
-### 4. **List Appointments** (GET `/appointments`)
+### 4. **List Appointments** (GET `/api/appointments`)
 
 This endpoint allows a calendar owner to list their appointments.
 
